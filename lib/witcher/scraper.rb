@@ -19,8 +19,11 @@ class Witcher::Scraper
   end
   
   def self.scrape_beast_attributes
-    doc = Nokogiri::HTML(open("#{beast.url}"))
-    
+    beastdoc = Nokogiri::HTML(open("#{beast.url}"))
+    beast.occurence = beastdoc.at('div.data-source:contains("Occurrence")').text.strip
+    beast.weakness = beastdoc.at('div.data-source:contains("Susceptibility")').text.strip
+    beast.loot = beastdoc.at('div.data-source:contains("Loot")').text.strip
+  end 
     
     
   

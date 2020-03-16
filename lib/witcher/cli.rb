@@ -1,21 +1,32 @@
 class Witcher::CLI
 
   def call
-    puts "You pick up an old dusty tome"
+    chapters_plus_monsters
+    display_monsters
+    # Witcher::Chapters.drop_last
+    # display_chapters
     
-    chapters
-    Witcher::Chapters.drop_last
-    display_chapters
   end
 
   
-  def chapters
+  def chapters_plus_monsters
     Witcher::Scraper.scrape_chapters
+    Witcher::Scraper.scrape_beasts
+    Witcher::Scraper.scrape_beast_attributes
   end 
   
   def display_chapters
     Witcher::Chapters.all.each_with_index do |chap, index|
     puts "#{index}. #{chap.name}"
+    end
+  end
+  
+    def display_monsters
+    Witcher::Beast.all.each_with_index do |monst, index|
+    puts "#{monst.name}"
+    puts "#{monst.occurence}"
+    puts "#{monst.weakness}"
+    puts "#{monst.loot}"
     end
   end
     
