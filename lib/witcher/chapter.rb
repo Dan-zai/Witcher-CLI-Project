@@ -8,6 +8,15 @@ class Witcher::Chapters
     @name = name
     @@all << self
   end
+  
+  def self.all
+    @@all
+  end
+  
+  def self.drop_last
+    @@all.pop
+  end
+  
 
 
 end
