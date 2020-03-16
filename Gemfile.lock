@@ -2,6 +2,8 @@ PATH
   remote: .
   specs:
     witcher (0.1.0)
+      colorize
+      nokogiri
 
 GEM
   remote: https://rubygems.org/
@@ -15,17 +17,15 @@ GEM
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
-    rake (10.5.0)
+    rake (13.0.1)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   bundler (~> 2.0)
-  colorize
-  nokogiri
   pry
-  rake (~> 10.0)
+  rake (~> 13.0)
   witcher!
 
 BUNDLED WITH
