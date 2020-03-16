@@ -4,7 +4,7 @@ class Witcher::Beast
 
   @@all =[]
 
-  def initialize(name, link, occurence, weakness, loot)
+  def initialize(name, link)
     @name = name
     @link = link
     @occurence = occurence
@@ -14,5 +14,9 @@ class Witcher::Beast
     @@all << self
 
   end
+  
+  def self.all
+    @@all
+  end 
   
 end 
