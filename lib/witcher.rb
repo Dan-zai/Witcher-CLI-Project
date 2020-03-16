@@ -1,6 +1,6 @@
-require "witcher/version"
 
-module Witcher
-  class Error < StandardError; end
-  # Your code goes here...
-end
+require_relative "./witcher/version.rb"
+require_relative "./witcher/cli.rb"
+require_relative "./witcher/scraper.rb"
+require_relative "./witcher/beast.rb"
+

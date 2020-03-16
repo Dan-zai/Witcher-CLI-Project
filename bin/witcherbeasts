@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require './lib/witcher'
+
+Witcher::CLI.new.call
