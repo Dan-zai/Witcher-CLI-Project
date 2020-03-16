@@ -20,11 +20,14 @@ class Witcher::Scraper
   def self.monster_on_selection(monster)
       Witcher::Beast.all.each do |eachmonster|
       beastdoc = Nokogiri::HTML(open("#{eachmonster.link}"))
-      eachmonster.occurence = "velen"
+
+      eachmonster.occurence = beastdoc.xpath('//div[@data-source="Occurrence"]/div[@class="pi-data-value pi-font"]//a/@href')
+
       eachmonster.weakness = "fire"
       eachmonster.loot = "bones"
     end
     end
+    
   end
   
 

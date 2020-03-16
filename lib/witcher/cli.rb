@@ -16,7 +16,7 @@ class Witcher::CLI
     monster = Witcher::Beast.all[index]
     Witcher::Scraper.monster_on_selection(monster)
     puts "#{monster.name}"
-    puts "#{monster.occurence}"
+    puts "#{monster.occurence}".split("/wiki/")
     puts "#{monster.weakness}"
     puts "#{monster.loot}"
     
