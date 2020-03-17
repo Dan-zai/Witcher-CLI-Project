@@ -13,14 +13,17 @@ class Witcher::CLI
     
     monster = Witcher::Beast.all[index]
     Witcher::Scraper.monster_on_selection(monster)
+    monster.occurence.split("/wiki/")
+    monster.weakness.split("/wiki/")
+    monster.loot.split(/(?<!\s)(?=[A-Z])/)
     
     puts "#{monster.name}"
     puts ""
-    puts "#{monster.occurence}".split("/wiki/")
+    puts "#{monster.occurence}".split(/(?<!\s)(?=[A-Z])/)
     puts ""
-    puts "#{monster.weakness}".split("/wiki/")
+    puts "#{monster.weakness}".split(/(?<!\s)(?=[A-Z])/)
     puts ""
-    puts "#{monster.loot}".split("/wiki/")
+    puts "#{monster.loot}".split(/(?<!\s)(?=[A-Z])/)
     
     # Witcher::Chapters.drop_last
     # display_chapters
