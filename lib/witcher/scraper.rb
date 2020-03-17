@@ -21,8 +21,8 @@ class Witcher::Scraper
       Witcher::Beast.all.each do |eachmonster|
       beastdoc = Nokogiri::HTML(open("#{eachmonster.link}"))
 
-      eachmonster.occurence = beastdoc.xpath('//div[@data-source="Occurrence"]/div[@class="pi-data-value pi-font"]//a/@title')
-      eachmonster.weakness = beastdoc.xpath('//div[@data-source="Susceptibility"]/div[@class="pi-data-value pi-font"]//a/@title')
+      eachmonster.occurence = beastdoc.xpath('//div[@data-source="Occurrence"]/div/a/text()')
+      eachmonster.weakness = beastdoc.xpath('//div[@data-source="Susceptibility"]/div/a/text()')
       eachmonster.loot = beastdoc.xpath('//div[@data-source="Loot"]/div/a/text()')
     end
     end
