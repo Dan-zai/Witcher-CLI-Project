@@ -23,7 +23,7 @@ class Witcher::Scraper
 
       eachmonster.occurence = beastdoc.xpath('//div[@data-source="Occurrence"]/div[@class="pi-data-value pi-font"]//a/@title')
       eachmonster.weakness = beastdoc.xpath('//div[@data-source="Susceptibility"]/div[@class="pi-data-value pi-font"]//a/@title')
-      eachmonster.loot = beastdoc.xpath('//div[@data-source="Loot"]/div[@class="pi-data-value pi-font"]//a')
+      eachmonster.loot = beastdoc.xpath('//div[@data-source="Loot"]/div/a/text()')
     end
     end
   end
