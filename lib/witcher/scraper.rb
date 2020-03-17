@@ -16,16 +16,23 @@ class Witcher::Scraper
       name = o.attribute("title").value
       monster = Witcher::Beast.new(name, link)
     end
+  end
+  
+  def self.monster_types
+      Witcher::Beast.all.each do |monstertype|
+      beastdoc = Nokogiri::HTML(open("#{monstertype.link}"))
+      eachmonster.type = beastdoc.xpath('//div[@data-source="Class"]/div/a/text()')
+  end
+end
       
-  def self.monster_on_selection(monster)
+      
+  def self.monster_on_selection
       Witcher::Beast.all.each do |eachmonster|
       beastdoc = Nokogiri::HTML(open("#{eachmonster.link}"))
-
       eachmonster.occurence = beastdoc.xpath('//div[@data-source="Occurrence"]/div/a/text()')
       eachmonster.weakness = beastdoc.xpath('//div[@data-source="Susceptibility"]/div/a/text()')
       eachmonster.loot = beastdoc.xpath('//div[@data-source="Loot"]/div/a/text()')
     end
     end
-  end
   
 end 

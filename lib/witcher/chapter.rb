@@ -9,6 +9,8 @@ class Witcher::Chapters
     @@all << self
   end
   
+  
+  
   def self.all
     @@all
   end

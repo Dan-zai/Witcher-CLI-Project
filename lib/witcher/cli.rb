@@ -6,13 +6,13 @@ class Witcher::CLI
     chapters_plus_monsters
     display_monsters
     
-    puts "select by number"
+    
+    
     
     input = gets.strip.to_i-1
     index = input
     
     monster = Witcher::Beast.all[index]
-    Witcher::Scraper.monster_on_selection(monster)
     
     puts "#{monster.name}"
     puts ""
@@ -31,6 +31,7 @@ class Witcher::CLI
   def chapters_plus_monsters
     Witcher::Scraper.scrape_chapters
     Witcher::Scraper.scrape_beasts
+    Witcher::Scraper.monster_on_selection
   end 
   
   def display_chapters
@@ -42,9 +43,6 @@ class Witcher::CLI
     def display_monsters
     Witcher::Beast.all.each_with_index do |monst, index|
     puts "#{index}. #{monst.name}"
-    # puts "#{monst.occurence}"
-    # puts "#{monst.weakness}"
-    # puts "#{monst.loot}"
     end
   end
     
