@@ -2,18 +2,30 @@ class Witcher::CLI
 
   def call
     
+    puts "Welcome, young Witcher... to the Bestiary!"
+    puts ""
+    puts "Pick a chapter number, and lets get started!"
+
+    Witcher::Chapters.scrape_chapters
+    display_chapters
+
+    input = gets.strip.to_i
+    index = input
+  
+    chapter = Witcher::Chapters.all[index]
+  
+    puts "#{chapter.name}! A fine choice, let's take a look at some examples"
+
+    Witcher::Monster.scrape_monsters(chapter)
+    display_monsters_in_chapter(chapter)
     
-    chapters_plus_monsters
-    display_monsters
-    
-    
-    
-    
-    input = gets.strip.to_i-1
+    input = gets.strip.to_i
     index = input
     
-    monster = Witcher::Beast.all[index]
-    
+    monster = chapter.monsters[index]
+    monster.monster_details
+  
+
     puts "#{monster.name}"
     puts ""
     puts "#{monster.occurence}".split(/(?<!\s)(?=[A-Z])/)
@@ -21,37 +33,24 @@ class Witcher::CLI
     puts "#{monster.weakness}".split(/(?<!\s)(?=[A-Z])/)
     puts ""
     puts "#{monster.loot}".split(/(?<!\s)(?=[A-Z])/)
-    
-    # Witcher::Chapters.drop_last
-    # display_chapters
+    puts ""
+    puts "#{monster.type}".split(/(?<!\s)(?=[A-Z])/)
     
   end
-
-  
-  def chapters_plus_monsters
-    Witcher::Scraper.scrape_chapters
-    Witcher::Scraper.scrape_beasts
-    Witcher::Scraper.monster_on_selection
-  end 
   
   def display_chapters
     Witcher::Chapters.all.each_with_index do |chap, index|
-    puts "#{index}. #{chap.name}"
+      puts "#{index}. #{chap.name}"
     end
   end
   
-    def display_monsters
-    Witcher::Beast.all.each_with_index do |monst, index|
-    puts "#{index}. #{monst.name}"
+  
+  def display_monsters_in_chapter(chapter)
+    chapter.monsters.each_with_index do |monst, index|
+      puts "#{index}. #{monst.name}"
     end
   end
-    
-
-  def goodbye
-    puts "Good luck on the Path!"
-  end
-
-
 
 
 end
+
