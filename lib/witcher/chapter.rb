@@ -29,19 +29,13 @@ class Witcher::Chapters
     @@all.pop
   end
 
-  # def self.get_chapters
-  #   self.scrape_chapters
-  #   chapter_index = CLI.menu(self.definition, self.all)
-  #   chapter = self.all
-  # end 
-
 
   def self.scrape_chapters
     doc = Nokogiri::HTML(open("https://witcher.fandom.com/wiki/The_Witcher_3_bestiary"))
     doc.css("h2 a").each do |c|
       url = c.attribute("href").value
       link = "https://witcher.fandom.com#{url}"
-      name = c.attribute("title").value
+      name = c.text
       self.new(name, link)
     end
   end

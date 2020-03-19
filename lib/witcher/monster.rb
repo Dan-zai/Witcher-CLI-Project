@@ -40,6 +40,5 @@ class Witcher::Monster
       self.loot = beastdoc.xpath('//div[@data-source="Loot"]/div/a/text()')
   end
 
-  
 
 end 
